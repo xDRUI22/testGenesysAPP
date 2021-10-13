@@ -2,11 +2,17 @@
     <head>  
         <script type="text/javascript" src="codeScript.js"></script>  
     </head>  
-    <body>  
+    <body>
         <p>App example ClientApp</p>  
         <form>               
             <label>Palabra clave:</label><br>
             <input type="text" id="keyWord" name="keyWord" value=""><br>
+            <br>
+            <label>Intervalo de tiempo</label><br>
+            <label>Inicio: </label><input type="datetime-local" id="intervalInitial" name="intervalInitial" value="" required><br>
+            <label>Fin:    </label><input type="datetime-local" id="intervalFinal" name="intervalFinal" value="" required><br>
+            <br>
+            <span id="error"></span>
             <br>
             <input type="button" value="Get data" onclick="mainFunction()"/>  
         </form>  
