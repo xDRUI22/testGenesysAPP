@@ -93,6 +93,7 @@ function getConversationByInterval(interval){
             console.log('error : ' + JSON.stringify(errorquery));
         }
     }
+    console.log( window.location );
     if(typeof(token) == 'undefined' || token == null || token == ''){
         console.log('Empty token');
       let urlSearch = window.location.search;
