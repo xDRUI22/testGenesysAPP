@@ -88,7 +88,7 @@ function getConversationByInterval(interval){
 
         console.log('queryStringData : ' + queryStringData);
         try{
-            window.location.replace(`https://login.${ENVIRONMENT}/oauth/authorize?` + jQuery.param(queryStringData));
+            window.location.replace('https://login.'+ENVIRONMENT+'/oauth/authorize?' + jQuery.param(queryStringData));
         }catch(errorquery){
             console.log('error : ' + JSON.stringify(errorquery));
         }
