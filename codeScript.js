@@ -74,9 +74,10 @@ function getConversationByInterval(interval){
     var token;
     //Body for conversation call api
     let body = {"interval": interval}; // Object | Search request options
-    
+        
+    console.log(' I ');
     const client = platformClient.ApiClient.instance;
-        client.loginImplicitGrant(CLIENT_ID, 'https://xdrui22.github.io/', { state: '' })
+        client.loginImplicitGrant(CLIENT_ID, 'https://xdrui22.github.io/testGenesysAPP/index.html', { state: '' })
         .then((data) => {
             console.log(data);
             // Do authenticated things
