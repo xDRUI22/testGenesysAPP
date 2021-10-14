@@ -39,6 +39,10 @@ function mainFunction(){
             errorText += '//' + e.message;
         }
     }
+
+    //Check if exists errors for api calls
+    if(isError) errorMessage(errorText);
+    else hideErrorMessage(); 
 }
 
 function errorMessage(errorMSG) {
