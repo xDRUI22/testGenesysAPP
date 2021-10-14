@@ -86,7 +86,7 @@ function getConversationByInterval(interval){
             redirect_uri : "http://localhost:8085/oauth2/callback"
         };
 
-        console.log('queryStringData : ' + queryStringData);
+        console.log('queryStringData II : ' + queryStringData);
         try{
             window.location.replace('https://login.'+ENVIRONMENT+'/oauth/authorize?' + jQuery.param(queryStringData));
         }catch(errorquery){
