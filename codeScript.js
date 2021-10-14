@@ -75,47 +75,19 @@ function getConversationByInterval(interval){
     //Body for conversation call api
     let body = {"interval": interval}; // Object | Search request options
     
-    
     const client = platformClient.ApiClient.instance;
-        client.loginClientCredentialsGrant('37e0173d-4787-4058-8339-de3b83c63dec','6yeCAW00D5K11EFgZJ6tjNSaDW96njZaRDBp-m-Z3Fs')
-        .then(()=> {
+        client.loginImplicitGrant(CLIENT_ID, 'https://apps.mypurecloud.ie/', { state: '' })
+        .then((data) => {
+            console.log(data);
+            // Do authenticated things
         })
         .catch((err) => {
-         // Handle failure response
-         console.log(err);
+            // Handle failure response
+            console.log(err);
         });
-    
-      console.log(client);
-    
-    if(window.location.hash) {
-        console.log('if');
-        token = getParameterByName('access_token');
-    } else {
-        console.log('elseII');
-        var queryStringData = {
-            response_type : "token",
-            client_id : CLIENT_ID,
-            redirect_uri : "http://localhost:8085/oauth2/callback"
-        };
-
-        console.log('queryStringData II : ' + queryStringData);
-        try{
-            window.location.replace('https://login.'+ENVIRONMENT+'/oauth/authorize?' + jQuery.param(queryStringData));
-        }catch(errorquery){
-            console.log('error : ' + JSON.stringify(errorquery));
-            console.log('error : ' + errorquery.message);
-        }
-    }
-    console.log( window.location );
-    if(typeof(token) == 'undefined' || token == null || token == ''){
-        console.log('Empty token');
-      let urlSearch = window.location.search;
-      console.log(urlSearch.substring(urlSearch.indexOf('=')+1,urlSearch.indexOf('&')));
-      token = urlSearch.substring(urlSearch.indexOf('=')+1,urlSearch.indexOf('&'));
-    }
-    console.log('access_token : ' + token);
+        
     // Manually set auth token or use loginImplicitGrant(...) or loginClientCredentialsGrant(...)        
-    platformClient.ApiClient.instance.setAccessToken(token);
+    //platformClient.ApiClient.instance.setAccessToken(token);
     
     let apiInstance = new platformClient.AnalyticsApi();
     
