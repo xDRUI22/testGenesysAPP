@@ -68,14 +68,20 @@ function getConversationByInterval(interval){
 
     // Genesys Cloud environment
     const ENVIRONMENT = 'mypurecloud.ie';
+    
+    console.log('Valores : ' + CLIENT_ID + '//'+ ENVIRONMENT);
     //Iniciamos token
     var token;
     //Body for conversation call api
     let body = {"interval": interval}; // Object | Search request options
     
+    console.log('body : ' +body);
+    
     if(window.location.hash) {
+        console.log('if');
         token = getParameterByName('access_token');
     } else {
+        console.log('else');
         var queryStringData = {
             response_type : "token",
             client_id : CLIENT_ID,
@@ -85,6 +91,7 @@ function getConversationByInterval(interval){
         window.location.replace(`https://login.${ENVIRONMENT}/oauth/authorize?` + jQuery.param(queryStringData));
     }
     if(typeof(token) == 'undefined' || token == null || token == ''){
+        console.log('Empty token');
       let urlSearch = window.location.search;
       console.log(urlSearch.substring(urlSearch.indexOf('=')+1,urlSearch.indexOf('&')));
       token = urlSearch.substring(urlSearch.indexOf('=')+1,urlSearch.indexOf('&'));
