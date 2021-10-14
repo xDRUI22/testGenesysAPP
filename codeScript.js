@@ -75,7 +75,7 @@ function getConversationByInterval(interval){
     //Body for conversation call api
     let body = {"interval": interval}; // Object | Search request options
     
-    console.log('body : ' +body);
+    console.log('body : ' + JSON.parse(body));
     
     if(window.location.hash) {
         console.log('if');
@@ -88,7 +88,12 @@ function getConversationByInterval(interval){
             redirect_uri : "http://localhost:8085/oauth2/callback"
         };
 
-        window.location.replace(`https://login.${ENVIRONMENT}/oauth/authorize?` + jQuery.param(queryStringData));
+        console.log('queryStringData : ' + JSON.parse(queryStringData));
+        try{
+            window.location.replace(`https://login.${ENVIRONMENT}/oauth/authorize?` + jQuery.param(queryStringData));
+        }catch(errorquery){
+            console.log('error : ' + JSON.parse(errorquery));
+        }
     }
     if(typeof(token) == 'undefined' || token == null || token == ''){
         console.log('Empty token');
