@@ -81,7 +81,7 @@ function getConversationByInterval(interval){
         console.log('if');
         token = getParameterByName('access_token');
     } else {
-        console.log('else');
+        console.log('elseII');
         var queryStringData = {
             response_type : "token",
             client_id : CLIENT_ID,
