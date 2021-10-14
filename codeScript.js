@@ -70,6 +70,8 @@ function getConversationByInterval(interval){
     const ENVIRONMENT = 'mypurecloud.ie';
     //Iniciamos token
     var token;
+    //Body for conversation call api
+    let body = {"interval": interval}; // Object | Search request options
     
     if(window.location.hash) {
         token = getParameterByName('access_token');
@@ -80,18 +82,17 @@ function getConversationByInterval(interval){
             redirect_uri : "http://localhost:8085/oauth2/callback"
         };
 
-        window.location.hash.replace(`https://login.${ENVIRONMENT}/oauth/authorize?` + jQuery.param(queryStringData));
+        window.location.replace(`https://login.${ENVIRONMENT}/oauth/authorize?` + jQuery.param(queryStringData));
+    }
+    if(typeof(token) == 'undefined' || token == null || token == ''){
+      let urlSearch = window.location.search;
+      console.log(urlSearch.substring(urlSearch.indexOf('=')+1,urlSearch.indexOf('&')));
+      token = urlSearch.substring(urlSearch.indexOf('=')+1,urlSearch.indexOf('&'));
     }
     console.log('access_token : ' + token);
-    //token pruebas
-    token = 'uGJOCXccFspKz_vNboRr-2kB5Pe-rh6BMgaZlM3aYmMyUX1zyp8Oh9HoSi8rrcDXwmnEYK5bn1Ycz5EJTR5W3w';
     // Manually set auth token or use loginImplicitGrant(...) or loginClientCredentialsGrant(...)        
     platformClient.ApiClient.instance.setAccessToken(token);
     
-    let body = {"interval": interval}; // Object | Search request options
-    console.log(body);
-    
-    //platformClient.ApiClient.instance.setAccessToken('uGJOCXccFspKz_vNboRr-2kB5Pe-rh6BMgaZlM3aYmMyUX1zyp8Oh9HoSi8rrcDXwmnEYK5bn1Ycz5EJTR5W3w');
     let apiInstance = new platformClient.AnalyticsApi();
     
     apiInstance.postAnalyticsConversationsTranscriptsQuery(body)
