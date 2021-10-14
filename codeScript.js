@@ -76,7 +76,7 @@ function getConversationByInterval(interval){
     let body = {"interval": interval}; // Object | Search request options
     
     const client = platformClient.ApiClient.instance;
-        client.loginImplicitGrant(CLIENT_ID, 'https://apps.mypurecloud.ie/', { state: '' })
+        client.loginImplicitGrant(CLIENT_ID, 'https://xdrui22.github.io/', { state: '' })
         .then((data) => {
             console.log(data);
             // Do authenticated things
