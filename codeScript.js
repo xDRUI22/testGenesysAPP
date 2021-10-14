@@ -91,6 +91,7 @@ function getConversationByInterval(interval){
             window.location.replace('https://login.'+ENVIRONMENT+'/oauth/authorize?' + jQuery.param(queryStringData));
         }catch(errorquery){
             console.log('error : ' + JSON.stringify(errorquery));
+            console.log('error : ' + errorquery.message);
         }
     }
     console.log( window.location );
