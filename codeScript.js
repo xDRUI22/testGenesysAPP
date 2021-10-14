@@ -75,8 +75,6 @@ function getConversationByInterval(interval){
     //Body for conversation call api
     let body = {"interval": interval}; // Object | Search request options
     
-    console.log('body : ' + JSON.stringify(body));
-    
     if(window.location.hash) {
         console.log('if');
         token = getParameterByName('access_token');
@@ -88,7 +86,7 @@ function getConversationByInterval(interval){
             redirect_uri : "http://localhost:8085/oauth2/callback"
         };
 
-        console.log('queryStringData : ' + JSON.stringify(queryStringData));
+        console.log('queryStringData : ' + queryStringData);
         try{
             window.location.replace(`https://login.${ENVIRONMENT}/oauth/authorize?` + jQuery.param(queryStringData));
         }catch(errorquery){
