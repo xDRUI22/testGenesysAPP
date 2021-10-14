@@ -75,6 +75,18 @@ function getConversationByInterval(interval){
     //Body for conversation call api
     let body = {"interval": interval}; // Object | Search request options
     
+    
+    const client = platformClient.ApiClient.instance;
+        client.loginClientCredentialsGrant('37e0173d-4787-4058-8339-de3b83c63dec','6yeCAW00D5K11EFgZJ6tjNSaDW96njZaRDBp-m-Z3Fs')
+        .then(()=> {
+        })
+        .catch((err) => {
+         // Handle failure response
+         console.log(err);
+        });
+    
+      console.log(client);
+    
     if(window.location.hash) {
         console.log('if');
         token = getParameterByName('access_token');
