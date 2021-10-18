@@ -33,9 +33,9 @@ function mainFunction(){
         hideErrorMessage();        
         //Start Genesys Cloud conexión api
         try{
-            console.log(urlParams.clientId);
-            console.log(urlParams.environment);
-            getConversationByInterval(interval, urlParams.clientId, urlParams.environment);            
+            console.log(urlParams.get('clientId'));
+            console.log(urlParams.get('environment'));
+            getConversationByInterval(interval, urlParams.get('clientId'), urlParams.get('environment'));            
         }catch (e){
             isError = true;
             errorText += '//' + e.message;
