@@ -69,13 +69,12 @@ function getConversationByInterval(interval){
     // Genesys Cloud environment
     const ENVIRONMENT = 'mypurecloud.ie';
     
-    console.log('Valores : ' + CLIENT_ID + '//'+ ENVIRONMENT);
     //Iniciamos token
     var token;
     //Body for conversation call api
     let body = {"interval": interval}; // Object | Search request options
         
-    console.log(' I ');
+    console.log(' III ');
     const client = platformClient.ApiClient.instance;
     client.setEnvironment(ENVIRONMENT);
     client.loginImplicitGrant(CLIENT_ID, 'https://xdrui22.github.io/testGenesysAPP/index.html', { state: '' })
