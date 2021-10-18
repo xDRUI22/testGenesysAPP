@@ -9,9 +9,7 @@ function mainFunction(){
 
     //urlParams
     const queryString = window.location.search;
-    console.log(queryString);
     const urlParams = new URLSearchParams(queryString);
-    console.log(urlParams);
 
     //check if keyword Variable is defined
     if(typeof(keywrd) == 'undefined' || keywrd == null || keywrd == '') { 
@@ -27,7 +25,6 @@ function mainFunction(){
         errorText += '//Debe indicar una fecha final v&aacute;lida';
     } else{
         interval = initialDate+':00.000Z/'+finalDate+':00.000Z';
-        console.log(interval);
     }    
     //Enviamos el error
     if(isError) errorMessage(errorText);
@@ -35,8 +32,6 @@ function mainFunction(){
         hideErrorMessage();        
         //Start Genesys Cloud conexión api
         try{
-            console.log('urlParams.get(clientId) : ' + urlParams.get('clientId'));
-            console.log(urlParams.get('environment'));
             getConversationByInterval(interval, urlParams.get('clientId'), urlParams.get('environment'));            
         }catch (e){
             isError = true;
@@ -65,11 +60,8 @@ function getParameterByName(name) {
 
 //Funciones de llamada a genesys
 function getConversationByInterval(interval, clientId, environment){
-
-    console.log('getConversationByInterval('+interval+')');
     // Implicit grant credentials
     const CLIENT_ID = clientId; //'37e0173d-4787-4058-8339-de3b83c63dec';
-
     // Genesys Cloud environment
     const ENVIRONMENT = 'mypurecloud.' + environment; //'mypurecloud.ie';
 
@@ -81,10 +73,10 @@ function getConversationByInterval(interval, clientId, environment){
     //Body for conversation call api
     let body = {"interval": interval}; // Object | Search request options
         
-    console.log(' III ');
+    console.log(' X ');
     const client = platformClient.ApiClient.instance;
     client.setEnvironment(ENVIRONMENT);
-    client.loginImplicitGrant(CLIENT_ID, 'https://xdrui22.github.io/testGenesysAPP/index.html', { state: '' })
+    client.loginImplicitGrant(CLIENT_ID, 'https://xdrui22.github.io/testGenesysAPP/index.html?clientId='+clientId+'&environment='+environment, { state: '' })
     .then((data) => {
         console.log(data);
         // Do authenticated things
