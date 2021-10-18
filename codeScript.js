@@ -8,8 +8,8 @@ function mainFunction(){
     let interval;
 
     //urlParams
-    //const queryString = window.location.search;
-    //const urlParams = new URLSearchParams(queryString);
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
 
     //check if keyword Variable is defined
     if(typeof(keywrd) == 'undefined' || keywrd == null || keywrd == '') { 
@@ -33,7 +33,9 @@ function mainFunction(){
         hideErrorMessage();        
         //Start Genesys Cloud conexión api
         try{
-            getConversationByInterval(interval);            
+            console.log(urlParams.clientId);
+            console.log(urlParams.environment);
+            getConversationByInterval(interval, urlParams.clientId, urlParams.environment);            
         }catch (e){
             isError = true;
             errorText += '//' + e.message;
@@ -60,14 +62,17 @@ function getParameterByName(name) {
 }
 
 //Funciones de llamada a genesys
-function getConversationByInterval(interval){
+function getConversationByInterval(interval, clientId, environment){
 
     console.log('getConversationByInterval('+interval+')');
     // Implicit grant credentials
-    const CLIENT_ID = '37e0173d-4787-4058-8339-de3b83c63dec';
+    const CLIENT_ID = clientId; //'37e0173d-4787-4058-8339-de3b83c63dec';
 
     // Genesys Cloud environment
-    const ENVIRONMENT = 'mypurecloud.ie';
+    const ENVIRONMENT = 'mypurecloud.' + environment; //'mypurecloud.ie';
+
+    console.log(CLIENT_ID);
+    console.log(ENVIRONMENT);
     
     //Iniciamos token
     var token;
@@ -86,9 +91,6 @@ function getConversationByInterval(interval){
         // Handle failure response
         console.log(err);
     });
-        
-    // Manually set auth token or use loginImplicitGrant(...) or loginClientCredentialsGrant(...)        
-    //platformClient.ApiClient.instance.setAccessToken(token);
     
     let apiInstance = new platformClient.AnalyticsApi();
     
