@@ -77,15 +77,16 @@ function getConversationByInterval(interval){
         
     console.log(' I ');
     const client = platformClient.ApiClient.instance;
-        client.loginImplicitGrant(CLIENT_ID, 'https://xdrui22.github.io/testGenesysAPP/index.html', { state: '' })
-        .then((data) => {
-            console.log(data);
-            // Do authenticated things
-        })
-        .catch((err) => {
-            // Handle failure response
-            console.log(err);
-        });
+    client.setEnvironment(ENVIRONMENT);
+    client.loginImplicitGrant(CLIENT_ID, 'https://xdrui22.github.io/testGenesysAPP/index.html', { state: '' })
+    .then((data) => {
+        console.log(data);
+        // Do authenticated things
+    })
+    .catch((err) => {
+        // Handle failure response
+        console.log(err);
+    });
         
     // Manually set auth token or use loginImplicitGrant(...) or loginClientCredentialsGrant(...)        
     //platformClient.ApiClient.instance.setAccessToken(token);
