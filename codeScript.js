@@ -9,7 +9,9 @@ function mainFunction(){
 
     //urlParams
     const queryString = window.location.search;
+    console.log(queryString);
     const urlParams = new URLSearchParams(queryString);
+    console.log(urlParams);
 
     //check if keyword Variable is defined
     if(typeof(keywrd) == 'undefined' || keywrd == null || keywrd == '') { 
@@ -33,7 +35,7 @@ function mainFunction(){
         hideErrorMessage();        
         //Start Genesys Cloud conexión api
         try{
-            console.log(urlParams.get('clientId'));
+            console.log('urlParams.get(clientId) : ' + urlParams.get('clientId'));
             console.log(urlParams.get('environment'));
             getConversationByInterval(interval, urlParams.get('clientId'), urlParams.get('environment'));            
         }catch (e){
